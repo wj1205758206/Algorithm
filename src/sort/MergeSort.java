@@ -58,7 +58,7 @@ public class MergeSort {
             tmpArray[tmpIndex++] = nums[leftIndex++];
         }
 
-        // 如果右边有剩余，就直接把右变 的数移入数组
+        // 如果右边的有剩余，就直接把右变 的数移入数组
         while (rightIndex <= right) {
             tmpArray[tmpIndex++] = nums[rightIndex++];
         }
