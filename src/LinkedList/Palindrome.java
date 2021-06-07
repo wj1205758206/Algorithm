@@ -7,10 +7,12 @@ public class Palindrome {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         Utils.addTail(head,2);
-        Utils.addTail(head,3);
-        Utils.addTail(head,3);
         Utils.addTail(head,2);
         Utils.addTail(head,1);
+/*        Utils.addTail(head,3);
+        Utils.addTail(head,3);
+        Utils.addTail(head,2);
+        Utils.addTail(head,1);*/
         Utils.print(head);
 
 /*        *//*方法一：翻转链表进行遍历比较*//*
@@ -118,6 +120,7 @@ public class Palindrome {
         * 如果是回文链表，那么除去中点以外，左部分链表和右部分翻转后的链表应该完全相同*/
         ListNode left = head;
         ListNode right = LinkedListReverseRecursion.reverse(slow);
+        Utils.print(right);
 
         /*因为在原来链表的直接操作，进行翻转，会破坏链表结构，需要用p，q来恢复链表原来的结构*/
         ListNode p = null;
@@ -125,6 +128,7 @@ public class Palindrome {
 
         /*把左部分链表与右部分翻转后的链表进行一一比较*/
         while (right != null) {
+
             if (left.val != right.val) {
                 return false;
             }
@@ -134,11 +138,14 @@ public class Palindrome {
             /*如果right.next == null，就说明left，right都走到了各自那部分链表的最后一个节点
             * 此时用p记录做左部分最后一个节点，并把翻转过的右部分再进行翻转，相当于右部分恢复成原来的顺序
             * 然后把左部分最后一个节点续接上右部分的头节点，这样就恢复了链表原来的结构*/
-            if (right.next == null) {
+            if (left.next == slow) {
                 p = left;
-                p.next = LinkedListReverseRecursion.reverse(q);
+
             }
         }
+
+        p.next = LinkedListReverseRecursion.reverse(q);
+
         return true;
     }
 }
